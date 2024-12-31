@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { urlFor } from '@/utils/image';
 
@@ -9,7 +8,7 @@ import { getAllArtists, type Artist } from '@/utils/sanity';
 const artists = (await getAllArtists()) as Artist[];
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="I Nostri Artisti | AnimaNoire Tattoo Atelier">
   <section
     id="artists-header"
     class="mx-auto flex max-w-4xl flex-col items-center px-4 pb-20 pt-40 text-center"
@@ -55,7 +54,7 @@ const artists = (await getAllArtists()) as Artist[];
                     </h3>
                   </div>
                 </div>
-                <a href={`/artist/${artist.slug}`} class="absolute inset-4" />
+                <a href={`/artista/${artist.slug}`} class="absolute inset-4" />
               </CardContent>
             </Card>
           </div>
