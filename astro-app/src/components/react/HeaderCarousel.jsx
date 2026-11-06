@@ -10,17 +10,13 @@ import { cn } from '@/lib/utils';
 
 const images = [
   {
-    url: '/studio-1.jpeg',
+    url: '/studio-1.webp',
     alt: 'Slide 1',
   },
   {
-    url: '/studio-2.jpeg',
+    url: '/studio-2.webp',
     alt: 'Slide 2',
-  },
-  {
-    url: '/studio-3.jpeg',
-    alt: 'Slide 3',
-  },
+  }
 ];
 
 const HeaderCarousel = () => {
