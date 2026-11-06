@@ -1,91 +1,67 @@
-# Clean Astro + Sanity app
+# AnimaNoire
 
-This template includes an [Astro](https://astro.build/) app with a [Sanity Studio](https://www.sanity.io/) – an open-source React application that connects to your Sanity project’s hosted dataset. The Studio is configured locally and can then be deployed for content collaboration.
+Website for AnimaNoire, a tattoo studio in Rimini, Italy: artists, gallery, merch and bookings, with content managed by the studio through Sanity.
+
+**Live:** [anima-noire.vercel.app](https://anima-noire.vercel.app)
 
 ## Features
 
-- Fetch content as data from [the Sanity Content Lake](https://www.sanity.io/docs/datastore)
-- Render block content with [Portable Text](https://www.sanity.io/docs/presenting-block-text)
-- Manage and create content with the intuitive [Sanity Studio](https://www.sanity.io/docs/sanity-studio).
-- Crop and render images with [Sanity Image URLs](https://www.sanity.io/docs/presenting-images)
+- Artist pages with individual portfolios, generated from the CMS at build time
+- Gallery and merch sections with carousels (Embla) and motion effects
+- Google reviews and a contact page for bookings
+- Sanity Studio, so the studio can edit artists, works and copy without touching code
 
-## Demo
+## Tech stack
 
-https://template-astro-clean.sanity.build
+| Area      | Tooling                                         |
+| --------- | ----------------------------------------------- |
+| Framework | Astro 5 with the Vercel adapter, React islands  |
+| CMS       | Sanity Studio v3, GROQ, Portable Text           |
+| Styling   | Tailwind CSS                                    |
+| Motion    | Motion, Embla Carousel                          |
 
-## Getting Started
+## Repository layout
 
-### Install the template
+An npm workspace with two apps:
 
-#### 1. Initialize template with Sanity CLI
-
-Run the command in your Terminal to initialize this template on your local computer.
-
-See the documentation if you are [having issues with the CLI](https://www.sanity.io/help/cli-errors).
-
-```shell
-npm create sanity@latest -- --template sanity-io/sanity-template-astro-clean
+```text
+astro-app/   # The public website (Astro)
+studio/      # Sanity Studio used by the studio to manage content
 ```
 
-#### 2. Run Studio and Astro app locally
+## Getting started
 
-Navigate to the template directory using `cd <your app name>`, and start the development servers by running the following command
+Requires Node.js 22 or later.
 
-```shell
-npm run dev
+```bash
+npm install
+cp astro-app/.env.example astro-app/.env   # Sanity project ID and dataset
+cp studio/.env.example studio/.env
+npm run dev                                 # runs the website and the Studio together
 ```
 
-#### 3. Open the app and sign in to the Studio
+| App     | URL                     |
+| ------- | ----------------------- |
+| Website | <http://localhost:4321> |
+| Studio  | <http://localhost:3333> |
 
-Open the Astro app running locally in your browser on [http://localhost:4321](http://localhost:4321).
+### Environment variables
 
-Open the Studio running locally in your browser on [http://localhost:3333](http://localhost:3333). You should now see a screen prompting you to log in to the Studio. Use the same service (Google, GitHub, or email) that you used when you logged in to the CLI.
+| App       | Name                                                | Purpose                      |
+| --------- | --------------------------------------------------- | ---------------------------- |
+| astro-app | `PUBLIC_SANITY_STUDIO_PROJECT_ID`                   | Sanity project ID            |
+| astro-app | `PUBLIC_SANITY_STUDIO_DATASET`                      | Sanity dataset               |
+| studio    | `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET` | Same project, for the Studio |
+| studio    | `SANITY_STUDIO_STUDIO_HOST`                         | Hostname for `sanity deploy` |
 
-### Adding content with Sanity
+## Deployment
 
-#### 1. Publish your first document
+The website deploys to Vercel with **Root Directory** set to `astro-app`. The Studio is deployed separately with `npm run deploy --workspace=studio`.
 
-The template comes pre-defined with a schema containing a `Post` document type.
+## Credits
 
-From the Studio, click "+ Create" and select the `Post` document type. Go ahead and create and publish the document.
+Started from Sanity's [Astro clean template](https://github.com/sanity-io/sanity-template-astro-clean).
 
-Your content should now appear in your Astro app ([http://localhost:4321](http://localhost:4321))
+## License
 
-#### 2. Extending the Sanity schema
-
-The schema for the `Post` document type is defined in the `studio/src/schemaTypes/post.ts` file. You can [add more document types](https://www.sanity.io/docs/schema-types) to the schema to suit your needs.
-
-### Deploying your application and inviting editors
-
-#### 1. Deploy Sanity Studio
-
-Your Astro frontend (`/astro-app`) and Sanity Studio (`/studio`) are still only running on your local computer.
-
-Back in your Studio directory (`/studio`), run the following command to deploy your Sanity Studio.
-
-```shell
-npx sanity deploy
-```
-
-#### 2. Deploy Astro app to Vercel
-
-You have the freedom to deploy your Astro app to your hosting provider of choice. With Vercel and GitHub being a popular choice, we'll cover the basics of that approach.
-
-1. Create a GitHub repository from this project. [Learn more](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github).
-2. Create a new Vercel project and connect it to your Github repository.
-3. Set the `Root Directory` to your Astro app.
-4. Configure your Environment Variables.
-
-#### 3. Invite a collaborator
-
-Now that you’ve deployed your Astro application and Sanity Studio, you can optionally invite a collaborator to your Studio. Open up [Manage](https://www.sanity.io/manage), select your project and click "Invite project members"
-
-They will be able to access the deployed Studio, where you can collaborate together on creating content.
-
-## Resources
-
-- [Sanity documentation](https://www.sanity.io/docs/)
-- [Astro documentation](https://docs.astro.build/en/getting-started/)
-- [Join the Sanity Community](https://slack.sanity.io)
-- [Learn Sanity](https://www.sanity.io/learn)
-- [Add Visual Editing (Presentation) to your project](https://www.sanity.io/guides/sanity-astro-blog)
+Client project, shared as a portfolio sample. It is not open source: the code, brand and content belong to AnimaNoire and Stefano D'Ambrosio, and no license to reuse them is granted.
